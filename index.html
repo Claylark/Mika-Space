@@ -98,6 +98,14 @@
           box-shadow: 0 0 0 0 rgba(233, 72, 138, 0);
         }
       }
+      /* 导航高亮样式 */
+      .nav-link.active {
+        color: #E9488A;
+      }
+      .nav-link.active.desktop {
+        border-bottom: 2px solid #E9488A;
+        padding-bottom: 1px;
+      }
     }
   </style>
 </head>
@@ -121,10 +129,10 @@
       
       <!-- 桌面端导航 -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="#profile" class="font-medium hover:text-primary transition-colors">关于我</a>
-        <a href="#hobbies" class="font-medium text-primary border-b-2 border-primary pb-1">兴趣圈</a>
-        <a href="#expect" class="font-medium hover:text-primary transition-colors">可聊话题</a>
-        <a href="#contact" class="font-medium hover:text-primary transition-colors">加好友</a>
+        <a href="#profile" class="font-medium nav-link desktop hover:text-primary transition-colors">关于我</a>
+        <a href="#hobbies" class="font-medium nav-link desktop hover:text-primary transition-colors">兴趣圈</a>
+        <a href="#expect" class="font-medium nav-link desktop hover:text-primary transition-colors">可聊话题</a>
+        <a href="#contact" class="font-medium nav-link desktop hover:text-primary transition-colors">加好友</a>
       </div>
       
       <!-- 移动端菜单按钮（橄榄枝图标） -->
@@ -136,10 +144,10 @@
     <!-- 移动端导航菜单 -->
     <div class="md:hidden hidden bg-white shadow-md absolute w-full" id="mobileMenu">
       <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-        <a href="#profile" class="font-medium py-2 hover:text-primary transition-colors">关于我</a>
-        <a href="#hobbies" class="font-medium py-2 text-primary transition-colors">兴趣圈</a>
-        <a href="#expect" class="font-medium py-2 hover:text-primary transition-colors">可聊话题</a>
-        <a href="#contact" class="font-medium py-2 hover:text-primary transition-colors">加好友</a>
+        <a href="#profile" class="font-medium py-2 nav-link hover:text-primary transition-colors">关于我</a>
+        <a href="#hobbies" class="font-medium py-2 nav-link hover:text-primary transition-colors">兴趣圈</a>
+        <a href="#expect" class="font-medium py-2 nav-link hover:text-primary transition-colors">可聊话题</a>
+        <a href="#contact" class="font-medium py-2 nav-link hover:text-primary transition-colors">加好友</a>
       </div>
     </div>
   </nav>
@@ -159,7 +167,7 @@
         你好呀，我是零宇/永焰鸟
       </h1>
       <p class="text-[clamp(1rem,2vw,1.25rem)] text-slate-600 mb-8 max-w-2xl mx-auto">
-        黄泉梦女｜i翁tv｜高浓度厄夏妹｜语擦人
+        黄泉梦女｜i翁tv｜昔涟水仙｜语擦人
       </p>
       
       <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -205,7 +213,7 @@
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">翁法罗斯全肯定</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">黄泉梦女</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">昔孝女</span>
-                <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">高浓度厄夏妹</span>
+                <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">昔涟水仙</span>
               </div>
               
               <h3 class="font-greek text-lg font-semibold mb-4">一些说明</h3>
@@ -298,6 +306,7 @@
             </h3>
             <div class="bg-white p-6 rounded-lg border border-pink-100 shadow-sm card-hover">
               <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">昔涟水仙（top）</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">凯苏</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">海刻海</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">织窃</span>
@@ -331,7 +340,7 @@
             <p class="text-slate-700 mb-3"><strong>主皮</strong>：昔涟、玻吕茜亚</p>
             <p class="text-slate-600 text-sm bg-pink-50 p-3 rounded-lg">
               <i class="fa fa-lightbulb-o text-primary mr-2"></i>
-              欢迎来找我对戏！
+              欢迎来找我对戏！尤其欢迎昔涟水仙相关设定讨论～
             </p>
           </div>
         </div>
@@ -401,7 +410,7 @@
             </div>
             <div class="bg-pink-50 p-5 rounded-lg text-center flex flex-col items-center justify-center">
               <i class="fa fa-star text-primary text-2xl mb-3"></i>
-              <h4 class="font-greek font-medium text-primary">梦向</h4>
+              <h4 class="font-greek font-medium text-primary">昔涟水仙</h4>
             </div>
             <div class="bg-pink-50 p-5 rounded-lg text-center flex flex-col items-center justify-center">
               <i class="fa fa-comments text-primary text-2xl mb-3"></i>
@@ -435,7 +444,7 @@
             </div>
             
             <p class="text-slate-600 text-center">
-              小窗随时开放
+              小窗随时开放，欢迎聊昔涟水仙相关～
             </p>
           </div>
         </div>
@@ -476,6 +485,50 @@
       icon.classList.toggle('fa-times');
     });
     
+    // 导航高亮功能
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // 移除所有导航高亮
+    function removeAllActive() {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+    }
+    
+    // 设置指定导航高亮
+    function setActiveLink(sectionId) {
+      removeAllActive();
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === `#${sectionId}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+    
+    // 点击导航项时设置高亮
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const sectionId = link.getAttribute('href').substring(1);
+        setActiveLink(sectionId);
+      });
+    });
+    
+    // 滚动时自动设置高亮
+    function handleScrollHighlight() {
+      let scrollPosition = window.scrollY + 100; // 偏移量，让高亮切换更自然
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          setActiveLink(sectionId);
+        }
+      });
+    }
+    
     // 平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -511,9 +564,15 @@
       card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
     });
     
-    // 初始加载和滚动时触发动画
-    window.addEventListener('load', animateOnScroll);
-    window.addEventListener('scroll', animateOnScroll);
+    // 初始加载和滚动时触发动画和导航高亮
+    window.addEventListener('load', () => {
+      animateOnScroll();
+      handleScrollHighlight(); // 初始加载时设置正确的高亮
+    });
+    window.addEventListener('scroll', () => {
+      animateOnScroll();
+      handleScrollHighlight();
+    });
     
     // 雷点区域滚动高亮提示
     window.addEventListener('scroll', () => {
