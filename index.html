@@ -20,6 +20,13 @@
             accent: '#C084FC', // 粉紫色
             gold: '#D97706', // 古希腊金色
             cream: '#FEF3C7', // 奶油白（类似大理石）
+            clay:{
+              primary: '#7C3AED',
+              secondary: '#4F46E5',
+              accent: '#EC4899',
+              rail: '#0EA5E9',
+              light: '#F8FAFC',
+            },
           },
           fontFamily: {
             inter: ['Inter', 'sans-serif'],
@@ -106,6 +113,40 @@
         border-bottom: 2px solid #E9488A;
         padding-bottom: 1px;
       }
+      /* 时间线样式 */
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -29px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #E9488A;
+        border: 2px solid white;
+      }
+      .timeline-item::after {
+        content: '';
+        position: absolute;
+        left: -24px;
+        top: 25px;
+        width: 2px;
+        height: calc(100% + 15px);
+        background: rgba(233, 72, 138, 0.2);
+      }
+      .timeline-item:last-child::after {
+        display: none;
+      }
+      /* 好友推荐卡片样式（平级适配） */
+      .friend-card {
+        transition: all 0.3s ease;
+        border-radius: 16px;
+        overflow: hidden;
+        width: 100%;
+      }
+      .friend-card:hover {
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
+      }
     }
   </style>
 </head>
@@ -133,6 +174,7 @@
         <a href="#hobbies" class="font-medium nav-link desktop hover:text-primary transition-colors">兴趣圈</a>
         <a href="#expect" class="font-medium nav-link desktop hover:text-primary transition-colors">可聊话题</a>
         <a href="#contact" class="font-medium nav-link desktop hover:text-primary transition-colors">加好友</a>
+        <a href="#history" class="font-medium nav-link desktop hover:text-primary transition-colors">属性历史</a>
       </div>
       
       <!-- 移动端菜单按钮（橄榄枝图标） -->
@@ -148,6 +190,7 @@
         <a href="#hobbies" class="font-medium py-2 nav-link hover:text-primary transition-colors">兴趣圈</a>
         <a href="#expect" class="font-medium py-2 nav-link hover:text-primary transition-colors">可聊话题</a>
         <a href="#contact" class="font-medium py-2 nav-link hover:text-primary transition-colors">加好友</a>
+        <a href="#history" class="font-medium py-2 nav-link hover:text-primary transition-colors">属性历史</a>
       </div>
     </div>
   </nav>
@@ -167,7 +210,7 @@
         你好呀，我是零宇/永焰鸟
       </h1>
       <p class="text-[clamp(1rem,2vw,1.25rem)] text-slate-600 mb-8 max-w-2xl mx-auto">
-        黄泉梦女｜i翁tv｜昔涟水仙｜语擦人
+        黄泉梦女｜i翁tv｜昔涟水仙｜厄夏cp｜语擦人
       </p>
       
       <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -214,6 +257,7 @@
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">黄泉梦女</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">昔孝女</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">昔涟水仙</span>
+                <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium tag-hover border border-primary/20">磕厄夏cp</span>
               </div>
               
               <h3 class="font-greek text-lg font-semibold mb-4">一些说明</h3>
@@ -222,7 +266,8 @@
                   <span>▪ <strong>单删需要通知（重点）</strong></span><br>
                   <span>▪ 不太想扩恨翁恨昔的人</span><br>
                   <span>▪ 不秒赞，补赞可小窗提醒</span><br>
-                  <span>▪ 小窗随时开放，必回不等于秒回</span>
+                  <span>▪ 小窗随时开放，必回不等于秒回</span><br>
+                  <span>▪ 持续磕厄夏cp，欢迎同好交流～</span>
                 </p>
               </div>
             </div>
@@ -310,6 +355,7 @@
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">凯苏</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">海刻海</span>
                 <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">织窃</span>
+                <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">厄夏（厄里纳斯×那刻夏）</span>
               </div>
             </div>
           </div>
@@ -321,7 +367,7 @@
             </h3>
             <div class="bg-white p-6 rounded-lg border border-pink-100 shadow-sm card-hover">
               <ul class="space-y-2 text-slate-700">
-                <li class="flex items-center"><i class="fa fa-circle text-primary text-xs mr-2"></i><strong>主坑</strong> 星穹铁道（昔涟/黄泉/那刻夏/玻吕茜亚）</li>
+                <li class="flex items-center"><i class="fa fa-circle text-primary text-xs mr-2"></i><strong>主坑</strong> 星穹铁道（昔涟/黄泉/那刻夏/玻吕茜亚/厄里纳斯）</li>
                 <li class="flex items-center"><i class="fa fa-circle text-primary text-xs mr-2"></i>原神（散兵/杜林）</li>
                 <li class="flex items-center"><i class="fa fa-circle text-primary text-xs mr-2"></i>崩坏三（苏/阿波尼亚/爱莉希雅）</li>
                 <li class="flex items-center"><i class="fa fa-circle text-primary text-xs mr-2"></i>重返未来：1999（淡）</li>
@@ -340,7 +386,7 @@
             <p class="text-slate-700 mb-3"><strong>主皮</strong>：昔涟、玻吕茜亚</p>
             <p class="text-slate-600 text-sm bg-pink-50 p-3 rounded-lg">
               <i class="fa fa-lightbulb-o text-primary mr-2"></i>
-              欢迎来找我对戏！尤其欢迎昔涟水仙相关设定讨论～
+              欢迎来找我对戏！尤其欢迎昔涟水仙、厄夏cp相关设定讨论～
             </p>
           </div>
         </div>
@@ -399,7 +445,7 @@
         </h2>
         
         <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10 card-hover border border-pink-100 greek-border">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
             <div class="bg-pink-50 p-5 rounded-lg text-center flex flex-col items-center justify-center">
               <i class="fa fa-heart text-primary text-2xl mb-3"></i>
               <h4 class="font-greek font-medium text-primary">家产</h4>
@@ -416,12 +462,16 @@
               <i class="fa fa-comments text-primary text-2xl mb-3"></i>
               <h4 class="font-greek font-medium text-primary">翁法罗斯cb</h4>
             </div>
+            <div class="bg-pink-50 p-5 rounded-lg text-center flex flex-col items-center justify-center">
+              <i class="fa fa-heart-o text-primary text-2xl mb-3"></i>
+              <h4 class="font-greek font-medium text-primary">厄夏cp</h4>
+            </div>
           </div>
         </div>
       </div>
     </section>
     
-    <!-- 联系方式 -->
+    <!-- 联系方式（好友推荐与加好友核心容器平级） -->
     <section id="contact" class="mb-10 scroll-mt-20">
       <div class="max-w-4xl mx-auto">
         <h2 class="font-greek text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center relative">
@@ -429,10 +479,11 @@
           <span class="absolute left-1/2 top-1/2 w-3/4 h-1 bg-gold/30 transform -translate-x-1/2 -translate-y-1/2 z-0"></span>
         </h2>
         
-        <div class="bg-gradient-to-br from-white to-pink-50 rounded-2xl shadow-xl p-8 md:p-10 border border-primary/10 greek-border">
+        <!-- 加好友核心容器（原父容器A） -->
+        <div class="bg-gradient-to-br from-white to-pink-50 rounded-2xl shadow-xl p-8 md:p-10 border border-primary/10 greek-border mb-8">
+          <!-- 仅保留QQ联系方式 + 小窗提示 -->
           <div class="flex flex-col items-center">
-            <!-- QQ -->
-            <div class="w-full max-w-xs flex items-center p-6 bg-white rounded-xl border border-pink-100 hover:border-primary/30 transition-colors shadow-sm mb-6">
+            <div class="w-full max-w-xs flex items-center p-6 bg-white rounded-xl border border-pink-100 hover:border-primary/30 transition-colors shadow-sm">
               <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mr-5">
                 <i class="fa fa-qq text-primary text-3xl"></i>
               </div>
@@ -443,9 +494,87 @@
               </div>
             </div>
             
-            <p class="text-slate-600 text-center">
-              小窗随时开放，欢迎聊昔涟水仙相关～
+            <p class="text-slate-600 text-center mt-6">
+              小窗随时开放～欢迎聊厄夏cp/昔涟水仙/翁法罗斯相关✨
             </p>
+          </div>
+        </div>
+        
+        <!-- 好友推荐卡片（与上面的加好友核心容器平级） -->
+        <div class="friend-card bg-white border border-clay-primary/15 p-5 md:p-6 rounded-xl shadow-xl greek-border">
+          <!-- 子窗口小标题（弱化，非大标题） -->
+          <div class="flex items-center mb-4 pb-2 border-b border-clay-primary/10">
+            <i class="fa fa-users text-clay-primary mr-2"></i>
+            <h4 class="font-greek text-lg font-semibold text-clay-primary">好友推荐</h4>
+          </div>
+          
+          <!-- Clay推荐卡片内容 -->
+          <div class="bg-gradient-to-br from-clay-primary/5 to-clay-rail/10 rounded-xl overflow-hidden">
+            <!-- 头像区域 -->
+            <div class="p-4 flex items-center border-b border-clay-primary/20">
+              <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-sm mr-4">
+                <img src="https://avatars.githubusercontent.com/u/95098372?v=4" 
+                    alt="Clay的头像" 
+                    class="w-full h-full object-cover" loading="lazy">
+              </div>
+              <div>
+                <h5 class="text-lg font-bold text-clay-primary">Clay</h5>
+                <p class="text-slate-600 text-sm mt-1">ENFP | 流萤厨 | 程序猿</p>
+              </div>
+            </div>
+            
+            <!-- 内容区域 -->
+            <div class="p-4 md:flex md:items-center md:justify-between">
+              <div class="md:flex-1">
+                <div class="mb-3">
+                  <h6 class="text-xs font-medium text-slate-500 mb-1">个人概述</h6>
+                  <p class="text-slate-700 text-sm">热情开朗的开发者，喜欢分享各种有趣的事物</p>
+                </div>
+                
+                <div>
+                  <h6 class="text-xs font-medium text-slate-500 mb-1">兴趣领域</h6>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2 py-1 bg-clay-primary/10 text-clay-primary text-xs rounded-full">星穹铁道</span>
+                    <span class="px-2 py-1 bg-clay-primary/10 text-clay-primary text-xs rounded-full">编程开发</span>
+                    <span class="px-2 py-1 bg-clay-primary/10 text-clay-primary text-xs rounded-full">地理研究</span>
+                    <span class="px-2 py-1 bg-clay-primary/10 text-clay-primary text-xs rounded-full">轨道交通</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 圆形访问按钮 -->
+              <div class="mt-4 md:mt-0 md:ml-4 flex justify-center md:block">
+                <a href="https://92.castorice.co" target="_blank" rel="noopener noreferrer" 
+                  class="inline-flex items-center justify-center w-12 h-12 bg-clay-primary hover:bg-clay-primary/90 text-white rounded-full font-medium transition-all shadow-sm shadow-clay-primary/20 hover:scale-105">
+                  <i class="fa fa-external-link text-lg"></i>
+                </a>
+                <p class="mt-1 text-xs text-slate-500 text-center hidden md:block">访问主页</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-3 text-center text-slate-500 text-xs">
+            <p>零宇没说这里写什么</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 属性历史记录 -->
+    <section id="history" class="mb-20 scroll-mt-20">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="font-greek text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center relative">
+          <span class="inline-block relative z-10">属性历史记录</span>
+          <span class="absolute left-1/2 top-1/2 w-3/4 h-1 bg-gold/30 transform -translate-x-1/2 -translate-y-1/2 z-0"></span>
+        </h2>
+        
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10 card-hover border border-pink-100 greek-border">
+          <!-- 时间线内容 -->
+          <div class="relative pl-10 space-y-8">
+            <div class="timeline-item relative">
+              <h4 class="text-lg font-semibold text-primary">2025年10月21日</h4>
+              <p class="text-slate-600 mt-2">淡坑厄夏（没有退坑）</p>
+            </div>
           </div>
         </div>
       </div>
@@ -457,7 +586,7 @@
     <div class="container mx-auto px-4 text-center text-slate-500 text-sm">
       <div class="w-24 h-1 bg-greek-pattern mx-auto mb-4"></div>
       <p>零宇·永焰鸟的空间 &copy; 2025-2026</p>
-      <p class="mt-2">愿与同好共赴热爱～</p>
+      <p class="mt-2">愿与同好共赴热爱～磕厄夏cp超快乐✨</p>
       <div class="w-24 h-1 bg-greek-pattern mx-auto mt-4"></div>
     </div>
   </footer>
