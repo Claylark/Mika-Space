@@ -292,11 +292,38 @@
           
           <!-- 横向滚动容器 -->
           <div class="scroll-container flex gap-4 pb-4">
-            <!-- 星铁·昔涟 -->
+            <!-- 星铁·昔涟（视频卡片） -->
             <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
               <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 替换为实际视频路径 -->
-                <video src="https://images.castorice.co/mika.polyxia.net/videos/Cyrene.webm" alt="星铁·昔涟" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                <!-- 修正视频标签：添加自动播放和多种格式支持 -->
+                <video 
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="auto"
+                >
+                  <!-- WebM格式（首选） -->
+                  <source src="https://images.castorice.co/mika.polyxia.net/videos/Cyrene.webm" type="video/webm">
+                  
+                  <!-- MP4格式（兼容性最好） -->
+                  <source src="https://images.castorice.co/mika.polyxia.net/videos/Cyrene.mp4" type="video/mp4">
+                  
+                  <!-- OGG格式（备用） -->
+                  <source src="https://images.castorice.co/mika.polyxia.net/videos/Cyrene.ogv" type="video/ogg">
+                  
+                  <!-- 如果都不支持，显示备用图片和提示 -->
+                  <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20 text-white p-4">
+                    <i class="fa fa-video-camera text-4xl mb-2 opacity-50"></i>
+                    <p class="text-center text-sm">视频无法播放<br>请更新浏览器或点击查看</p>
+                    <a href="https://images.castorice.co/mika.polyxia.net/videos/Cyrene.mp4" 
+                       target="_blank" 
+                       class="mt-2 px-3 py-1 bg-primary text-white text-xs rounded-full hover:bg-primary/80 transition-colors">
+                      直接查看视频
+                    </a>
+                  </div>
+                </video>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
                 <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
                 <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">星铁·昔涟</h3>
@@ -328,7 +355,7 @@
               </div>
             </div>
             
-            <!-- 星铁·昔涟 -->
+            <!-- 菲梦少女·宁雪艳 -->
             <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
               <div class="relative w-full aspect-[4/3] overflow-hidden">
                 <!-- 替换为实际图片路径 -->
@@ -756,6 +783,33 @@
     // 初始化卡片样式
     document.querySelectorAll('.card-hover').forEach(card => {
       card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+    });
+    
+    // 视频自动播放兼容性处理
+    document.addEventListener('DOMContentLoaded', function() {
+      const videoElement = document.querySelector('video');
+      if (videoElement) {
+        // 检查浏览器是否支持视频播放
+        videoElement.addEventListener('error', function(e) {
+          console.log('视频加载失败，尝试备用方案');
+          // 可以在这里添加更多备用逻辑
+        });
+        
+        // 检查是否可以自动播放
+        videoElement.play().then(() => {
+          console.log('视频自动播放成功');
+        }).catch(error => {
+          console.log('自动播放被阻止:', error);
+          // 可以在这里添加用户交互后播放的逻辑
+          const videoContainer = videoElement.closest('.relative');
+          if (videoContainer) {
+            videoContainer.addEventListener('click', function() {
+              videoElement.muted = true;
+              videoElement.play();
+            }, { once: true });
+          }
+        });
+      }
     });
     
     // 初始加载和滚动时触发动画和导航高亮
