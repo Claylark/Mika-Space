@@ -147,6 +147,26 @@
       .friend-card:hover {
         box-shadow: 0 8px 30px rgba(124, 58, 237, 0.15);
       }
+      /* 角色名称样式 */
+      .character-name {
+        color: gold;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+      /* 图片渐变效果 */
+      .image-gradient { position: relative; overflow: hidden; }
+      .image-gradient::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+        pointer-events: none;
+        z-index: 1;
+      }
     }
   </style>
 </head>
@@ -195,13 +215,13 @@
     </div>
   </nav>
 
-  <!-- 英雄区域（古希腊神庙感） -->
+  <!-- 个人简明信息区域 -->
   <header class="pt-32 pb-20 md:pt-40 md:pb-32 px-4 text-center relative z-10">
     <div class="container mx-auto max-w-4xl">
       <!-- 头像 -->
       <div class="relative w-36 h-36 md:w-48 md:h-48 mx-auto mb-8 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg transform transition-transform hover:scale-105">
         <!-- 头像图片，object-cover适配圆形 -->
-        <img src="https://images.castorice.co/mika.polyxia.net/images/Head.jpg" alt="零宇/永焰鸟头像" class="w-full h-full object-cover">
+        <img src="https://images.castorice.co/mika.polyxia.net/images/Head.jpg" alt="零宇/永焰鸟头像" class="w-full h-full object-cover" loading="lazy">
         <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-3/4 h-4 bg-gold/20 rounded-full"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
       </div>
@@ -215,7 +235,7 @@
       
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a href="#contact" class="px-8 py-3 bg-primary hover:bg-primary/90 text-white rounded-full font-medium shadow-lg shadow-primary/20 transition-all transform hover:-translate-y-1">
-          加QQ好友
+          添加好友
         </a>
         <a href="#hobbies" class="px-8 py-3 bg-white hover:bg-cream text-primary border border-primary/30 rounded-full font-medium shadow-md transition-all transform hover:-translate-y-1">
           我的兴趣圈
@@ -226,7 +246,7 @@
 
   <main class="container mx-auto px-4 pb-20 relative z-10">
     <!-- 关于我  -->
-    <section id="profile" class="mb-20 scroll-mt-20">
+    <section id="profile" class="mb-20 scroll-mt-20 content-auto">
       <div class="max-w-4xl mx-auto">
         <h2 class="font-greek text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center relative">
           <span class="inline-block relative z-10">关于我</span>
@@ -277,32 +297,32 @@
     </section>
     
     <!-- 兴趣圈 -->
-    <section id="hobbies" class="mb-20 scroll-mt-20">
+    <section id="hobbies" class="mb-20 scroll-mt-20 content-auto">
       <div class="max-w-4xl mx-auto">
         <h2 class="font-greek text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center relative">
           <span class="inline-block relative z-10">我的兴趣圈</span>
           <span class="absolute left-1/2 top-1/2 w-3/4 h-1 bg-gold/30 transform -translate-x-1/2 -translate-y-1/2 z-0"></span>
         </h2>
         
-        <!-- 主推角色（卡片高度统一，图片自适应比例） -->
-        <div class="relative mb-12">
+        <!-- 主推角色（修改为Clay的h-48固定高度方式） -->
+        <div class="relative mb-12 content-auto">
           <h3 class="font-greek text-xl font-semibold mb-6 flex items-center">
             <i class="fa fa-star text-primary mr-2"></i>主推角色
           </h3>
           
           <!-- 横向滚动容器 -->
-          <div class="scroll-container flex gap-4 pb-4">
+          <div class="scroll-container flex gap-4 pb-4 content-auto">
             <!-- 星铁·昔涟（视频卡片） -->
-            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
-              <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 修正视频标签：添加自动播放和多种格式支持 -->
+            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover">
+              <div class="h-48 overflow-hidden relative">
                 <video 
                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   autoplay
                   muted
                   loop
                   playsinline
-                  preload="auto"
+                  preload="metadata"
+                  loading="lazy"
                 >
                   <!-- WebM格式（首选） -->
                   <source src="https://images.castorice.co/mika.polyxia.net/videos/Cyrene.webm" type="video/webm">
@@ -324,101 +344,78 @@
                     </a>
                   </div>
                 </video>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">星铁·昔涟</h3>
-                <div class="absolute bottom-0 left-0 w-full h-2 bg-greek-pattern opacity-30 z-10"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                <h3 class="character-name absolute bottom-4 right-4 text-xl font-bold z-10">星铁·昔涟</h3>
               </div>
             </div>
 
             <!-- 星铁·大丽花 -->
-            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
-              <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 替换为实际图片路径 -->
-                <img src="https://images.castorice.co/mika.polyxia.net/images/Constance.png" alt="星铁·大丽花" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">星铁·大丽花</h3>
-                <div class="absolute bottom-0 left-0 w-full h-2 bg-greek-pattern opacity-30 z-10"></div>
+            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover">
+              <div class="h-48 overflow-hidden relative">
+                <img src="https://images.castorice.co/mika.polyxia.net/images/Constance.png" alt="星铁·大丽花" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                <h3 class="character-name absolute bottom-4 right-4 text-xl font-bold z-10">星铁·大丽花</h3>
               </div>
             </div>
 
             <!-- VOCALOID·Gumi -->
-            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
-              <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 替换为实际图片路径 -->
-                <img src="https://images.castorice.co/mika.polyxia.net/images/GUMI.jpg" alt="VOCALOID·Gumi" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">VOCALOID·Gumi</h3>
-                <div class="absolute bottom-0 left-0 w-full h-2 bg-greek-pattern opacity-30 z-10"></div>
+            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover">
+              <div class="h-48 overflow-hidden relative">
+                <img src="https://images.castorice.co/mika.polyxia.net/images/GUMI.jpg" alt="VOCALOID·Gumi" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                <h3 class="character-name absolute bottom-4 right-4 text-xl font-bold z-10">VOCALOID·Gumi</h3>
               </div>
             </div>
             
             <!-- 菲梦少女·宁雪艳 -->
-            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
-              <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 替换为实际图片路径 -->
-                <img src="https://images.castorice.co/mika.polyxia.net/images/Hera.jpg" alt="菲梦少女·宁雪艳" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">菲梦少女·宁雪艳</h3>
-                <div class="absolute bottom-0 left-0 w-full h-2 bg-greek-pattern opacity-30 z-10"></div>
+            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover">
+              <div class="h-48 overflow-hidden relative">
+                <img src="https://images.castorice.co/mika.polyxia.net/images/Hera.jpg" alt="菲梦少女·宁雪艳" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                <h3 class="character-name absolute bottom-4 right-4 text-xl font-bold z-10">菲梦少女·宁雪艳</h3>
               </div>
             </div>
 
             <!-- 原神·哥伦比娅 -->
-            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
-              <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 替换为实际图片路径 -->
-                <img src="https://images.castorice.co/mika.polyxia.net/images/Columbina.jpg" alt="原神·哥伦比娅" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">原神·哥伦比娅</h3>
-                <div class="absolute bottom-0 left-0 w-full h-2 bg-greek-pattern opacity-30 z-10"></div>
+            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover">
+              <div class="h-48 overflow-hidden relative">
+                <img src="https://images.castorice.co/mika.polyxia.net/images/Columbina.jpg" alt="原神·哥伦比娅" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                <h3 class="character-name absolute bottom-4 right-4 text-xl font-bold z-10">原神·哥伦比娅</h3>
               </div>
             </div>
             
             <!-- 星铁·黄泉 -->
-            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
-              <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 替换为实际图片路径 -->
-                <img src="https://images.castorice.co/mika.polyxia.net/images/Acheron.jpg" alt="星铁·黄泉" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">星铁·黄泉</h3>
-                <div class="absolute bottom-0 left-0 w-full h-2 bg-greek-pattern opacity-30 z-10"></div>
+            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover">
+              <div class="h-48 overflow-hidden relative">
+                <img src="https://images.castorice.co/mika.polyxia.net/images/Acheron.jpg" alt="星铁·黄泉" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                <h3 class="character-name absolute bottom-4 right-4 text-xl font-bold z-10">星铁·黄泉</h3>
               </div>
             </div>
             
             <!-- 星铁·那刻夏 -->
-            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
-              <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 替换为实际图片路径 -->
-                <img src="https://images.castorice.co/mika.polyxia.net/images/Anaxa.jpg" alt="星铁·那刻夏" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">星铁·那刻夏</h3>
-                <div class="absolute bottom-0 left-0 w-full h-2 bg-greek-pattern opacity-30 z-10"></div>
+            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover">
+              <div class="h-48 overflow-hidden relative">
+                <img src="https://images.castorice.co/mika.polyxia.net/images/Anaxa.jpg" alt="星铁·那刻夏" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                <h3 class="character-name absolute bottom-4 right-4 text-xl font-bold z-10">星铁·那刻夏</h3>
               </div>
             </div>
             
             <!-- 星铁·玻吕茜亚 -->
-            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover border border-gold/10 h-[280px]">
-              <div class="relative w-full aspect-[4/3] overflow-hidden">
-                <!-- 替换为实际图片路径 -->
-                <img src="https://images.castorice.co/mika.polyxia.net/images/Polyxia.jpg" alt="星铁·玻吕茜亚" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-primary/10 z-10"></div>
-                <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <h3 class="absolute bottom-4 right-4 text-white text-xl font-greek font-bold z-20">星铁·玻吕茜亚</h3>
-                <div class="absolute bottom-0 left-0 w-full h-2 bg-greek-pattern opacity-30 z-10"></div>
+            <div class="w-full sm:w-80 flex-shrink-0 bg-white rounded-2xl shadow-md overflow-hidden card-hover">
+              <div class="h-48 overflow-hidden relative">
+                <img src="https://images.castorice.co/mika.polyxia.net/images/Polyxia.jpg" alt="星铁·玻吕茜亚" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+                <h3 class="character-name absolute bottom-4 right-4 text-xl font-bold z-10">星铁·玻吕茜亚</h3>
               </div>
             </div>
           </div>
         </div>
         
         <!-- 核心兴趣 -->
-        <div class="mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="mb-12 grid grid-cols-1 md:grid-cols-2 gap-6 content-auto">
           <!-- 家产 -->
           <div>
             <h3 class="font-greek text-xl font-semibold mb-6 flex items-center">
@@ -455,7 +452,7 @@
         </div>
         
         <!-- 语擦相关 -->
-        <div class="mb-12">
+        <div class="mb-12 content-auto">
           <h3 class="font-greek text-xl font-semibold mb-6 flex items-center">
             <i class="fa fa-comment text-primary mr-2"></i>语擦相关
           </h3>
@@ -469,7 +466,7 @@
         </div>
         
         <!-- 雷点说明 -->
-        <div class="relative">
+        <div class="relative content-auto">
           <div class="absolute -top-4 -left-4 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center z-10 hidden md:flex">
             <i class="fa fa-exclamation-triangle text-primary"></i>
           </div>
@@ -514,7 +511,7 @@
     </section>
     
     <!-- 可聊话题 -->
-    <section id="expect" class="mb-20 scroll-mt-20">
+    <section id="expect" class="mb-20 scroll-mt-20 content-auto">
       <div class="max-w-4xl mx-auto">
         <h2 class="font-greek text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center relative">
           <span class="inline-block relative z-10">你可以找我聊</span>
@@ -549,7 +546,7 @@
     </section>
     
     <!-- 联系方式（好友推荐与加好友核心容器平级） -->
-    <section id="contact" class="mb-10 scroll-mt-20">
+    <section id="contact" class="mb-10 scroll-mt-20 content-auto">
       <div class="max-w-4xl mx-auto">
         <h2 class="font-greek text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center relative">
           <span class="inline-block relative z-10">加我好友</span>
@@ -558,23 +555,37 @@
         
         <!-- 加好友核心容器 -->
         <div class="bg-gradient-to-br from-white to-pink-50 rounded-2xl shadow-xl p-8 md:p-10 border border-primary/10 greek-border mb-8">
-          <!-- 仅保留QQ联系方式 + 小窗提示 -->
-          <div class="flex flex-col items-center">
-            <div class="w-full max-w-xs flex items-center p-6 bg-white rounded-xl border border-pink-100 hover:border-primary/30 transition-colors shadow-sm">
+          <!-- QQ和微信联系方式并排显示 -->
+          <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+            <!-- QQ联系方式 -->
+            <div class="w-full md:w-1/2 flex items-center p-6 bg-white rounded-xl border border-pink-100 hover:border-primary/30 transition-colors shadow-sm cursor-pointer" onclick="window.open('https://qm.qq.com/cgi-bin/qm/qr?k=9Yct2CzikznNpHTA_SroQnV0und2ZuWZ', '_blank')">
               <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mr-5">
                 <i class="fa fa-qq text-primary text-3xl"></i>
               </div>
               <div>
                 <h4 class="font-medium text-sm text-slate-500 mb-1">QQ号</h4>
-                <a href="https://qm.qq.com/cgi-bin/qm/qr?k=9Yct2CzikznNpHTA_SroQnV0und2ZuWZ" class="text-xl font-medium hover:text-primary transition-colors">1709471592</a>
-                <p class="text-xs text-slate-400 mt-1">点击链接直接加好友</p>
+                <div class="text-xl font-medium hover:text-primary transition-colors">1709471592</div>
+                <p class="text-xs text-slate-400 mt-1">点击卡片加QQ好友</p>
               </div>
             </div>
             
-            <p class="text-slate-600 text-center mt-6">
-              小窗随时开放～
-            </p>
+            <!-- 微信联系方式 -->
+            <div class="w-full md:w-1/2 flex items-center p-6 bg-white rounded-xl border border-pink-100 hover:border-primary/30 transition-colors shadow-sm cursor-pointer" id="wechatContact">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mr-5">
+                <i class="fa fa-wechat text-primary text-3xl"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-sm text-slate-500 mb-1">微信号</h4>
+                <div class="text-xl font-medium hover:text-primary transition-colors" id="wechatId">-ETERNAL093</div>
+                <p class="text-xs text-slate-400 mt-1">点击卡片复制微信号</p>
+              </div>
+            </div>
           </div>
+          
+          <!-- 提示信息 -->
+          <p class="text-slate-600 text-center mt-6">
+            小窗随时开放～ 微信无法一键添加，将会自动跳转微信。
+          </p>
         </div>
         
         <!-- 好友推荐卡片） -->
@@ -638,7 +649,7 @@
     </section>
 
     <!-- 属性历史记录 -->
-    <section id="history" class="mb-20 scroll-mt-20">
+    <section id="history" class="mb-20 scroll-mt-20 content-auto">
       <div class="max-w-4xl mx-auto">
         <h2 class="font-greek text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-8 text-center relative">
           <span class="inline-block relative z-10">属性历史记录</span>
@@ -702,53 +713,35 @@
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
       const icon = menuBtn.querySelector('i');
-      icon.classList.toggle('fa-leaf');
-      icon.classList.toggle('fa-times');
+      if (icon.classList.contains('fa-leaf')) {
+        icon.classList.replace('fa-leaf', 'fa-times');
+      } else {
+        icon.classList.replace('fa-times', 'fa-leaf');
+      }
     });
     
-    // 导航高亮功能
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    // 移除所有导航高亮
-    function removeAllActive() {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-      });
-    }
-    
-    // 设置指定导航高亮
-    function setActiveLink(sectionId) {
-      removeAllActive();
-      navLinks.forEach(link => {
-        if (link.getAttribute('href') === `#${sectionId}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-    
-    // 点击导航项时设置高亮
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        const sectionId = link.getAttribute('href').substring(1);
-        setActiveLink(sectionId);
-      });
-    });
-    
-    // 滚动时自动设置高亮
-    function handleScrollHighlight() {
-      let scrollPosition = window.scrollY + 100; // 偏移量，让高亮切换更自然
+    // 修改点：导航高亮改为Clay的简单实现
+    const highlightNavOnScroll = () => {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+      
+      let currentSection = '';
       
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveLink(sectionId);
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
         }
       });
-    }
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+    };
     
     // 平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -757,8 +750,9 @@
         if (!mobileMenu.classList.contains('hidden')) {
           mobileMenu.classList.add('hidden');
           const icon = menuBtn.querySelector('i');
-          icon.classList.add('fa-leaf');
-          icon.classList.remove('fa-times');
+          if (icon.classList.contains('fa-times')) {
+            icon.classList.replace('fa-times', 'fa-leaf');
+          }
         }
         document.querySelector(this.getAttribute('href')).scrollIntoView({
           behavior: 'smooth'
@@ -785,42 +779,137 @@
       card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
     });
     
-    // 视频自动播放兼容性处理
+    // 修改点：增强的视频自动播放与错误处理（与Clay统一）
     document.addEventListener('DOMContentLoaded', function() {
-      const videoElement = document.querySelector('video');
-      if (videoElement) {
-        // 检查浏览器是否支持视频播放
-        videoElement.addEventListener('error', function(e) {
-          console.log('视频加载失败，尝试备用方案');
-          // 可以在这里添加更多备用逻辑
-        });
-        
-        // 检查是否可以自动播放
-        videoElement.play().then(() => {
-          console.log('视频自动播放成功');
-        }).catch(error => {
-          console.log('自动播放被阻止:', error);
-          // 可以在这里添加用户交互后播放的逻辑
-          const videoContainer = videoElement.closest('.relative');
-          if (videoContainer) {
-            videoContainer.addEventListener('click', function() {
-              videoElement.muted = true;
-              videoElement.play();
-            }, { once: true });
-          }
-        });
-      }
+      const videoElements = document.querySelectorAll('video');
+      videoElements.forEach(videoElement => {
+        if (videoElement) {
+          videoElement.preload = 'metadata';
+          
+          videoElement.addEventListener('error', function(e) {
+            console.log('视频加载失败:', videoElement.src, e);
+            
+            const sources = videoElement.querySelectorAll('source');
+            if (sources && sources.length > 1) {
+              const currentSrc = videoElement.currentSrc || videoElement.src;
+              for (let i = 0; i < sources.length; i++) {
+                if (sources[i].src === currentSrc) {
+                  const nextSrc = sources[(i + 1) % sources.length];
+                  videoElement.src = nextSrc.src;
+                  videoElement.load();
+                  break;
+                }
+              }
+            }
+            
+            const videoContainer = videoElement.closest('.relative, .h-48');
+            if (videoContainer && !videoContainer.querySelector('.video-fallback')) {
+              const fallbackDiv = document.createElement('div');
+              fallbackDiv.className = 'video-fallback absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20 text-white p-4';
+              fallbackDiv.innerHTML = `
+                <i class="fa fa-video-camera text-4xl mb-2 opacity-50"></i>
+                <p class="text-center text-sm">视频无法播放<br>请更新浏览器或点击查看</p>
+                <a href="${videoElement.src || videoElement.currentSrc || '#'}" 
+                   target="_blank" 
+                   class="mt-2 px-3 py-1 bg-primary text-white text-xs rounded-full hover:bg-primary/80 transition-colors">
+                  直接查看视频
+                </a>
+              `;
+              videoContainer.appendChild(fallbackDiv);
+            }
+          });
+          
+          videoElement.addEventListener('loadedmetadata', function() {
+            console.log('视频元数据加载完成');
+          });
+          
+          videoElement.addEventListener('canplay', function() {
+            console.log('视频可以播放');
+          });
+          
+          videoElement.play().then(() => {
+            console.log('视频自动播放成功');
+          }).catch(error => {
+            console.log('自动播放被阻止:', error);
+            const videoContainer = videoElement.closest('.relative, .h-48');
+            if (videoContainer) {
+              videoContainer.addEventListener('click', function() {
+                videoElement.muted = true;
+                videoElement.play().catch(e => {
+                  console.log('用户交互后播放失败:', e);
+                });
+              }, { once: true });
+            }
+          });
+        }
+      });
     });
     
-    // 初始加载和滚动时触发动画和导航高亮
-    window.addEventListener('load', () => {
-      animateOnScroll();
-      handleScrollHighlight(); // 初始加载时设置正确的高亮
-    });
-    window.addEventListener('scroll', () => {
-      animateOnScroll();
-      handleScrollHighlight();
-    });
+    // 微信联系方式功能（保持零宇原有增强版）
+    const wechatContact = document.getElementById('wechatContact');
+    const wechatId = document.getElementById('wechatId');
+    
+    if (wechatContact && wechatId) {
+      wechatContact.addEventListener('click', function() {
+        const wechatNumber = '-ETERNAL093';
+        
+        // 复制微信号到剪贴板
+        const copyToClipboard = (text) => {
+          if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text);
+          } else {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+              document.execCommand('copy');
+              return Promise.resolve();
+            } catch (err) {
+              return Promise.reject(err);
+            } finally {
+              document.body.removeChild(textArea);
+            }
+          }
+        };
+
+        copyToClipboard(wechatNumber).then(() => {
+          const originalText = wechatId.textContent;
+          wechatId.textContent = '已复制到剪贴板！';
+          wechatId.style.color = '#E9488A';
+          
+          setTimeout(() => {
+            wechatId.textContent = originalText;
+            wechatId.style.color = '';
+          }, 2000);
+          
+          try {
+            window.location.href = 'weixin://';
+            
+            setTimeout(() => {
+              alert('微信号 "' + wechatNumber + '" 已复制到剪贴板，请打开微信添加好友！');
+            }, 500);
+          } catch (e) {
+            alert('微信号 "' + wechatNumber + '" 已复制到剪贴板，请打开微信添加好友！');
+          }
+        }).catch(err => {
+          console.error('复制失败:', err);
+          alert('请手动复制微信号: ' + wechatNumber);
+        });
+      });
+      
+      wechatContact.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 8px 25px -5px rgba(233, 72, 138, 0.2)';
+      });
+      
+      wechatContact.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+        this.style.boxShadow = '';
+      });
+    }
     
     // 雷点区域滚动高亮提示
     window.addEventListener('scroll', () => {
@@ -833,6 +922,16 @@
           warningSection.classList.remove('shadow-lg');
         }
       }
+    });
+    
+    // 初始加载和滚动时触发动画和导航高亮
+    window.addEventListener('load', () => {
+      animateOnScroll();
+      highlightNavOnScroll();
+    });
+    window.addEventListener('scroll', () => {
+      animateOnScroll();
+      highlightNavOnScroll();
     });
   </script>
 </body>
